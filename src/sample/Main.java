@@ -13,6 +13,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("BugTracker");
         primaryStage.setScene(new Scene(root, 1200, 800));
+        root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());// CSS file TODO remove <--
+//        String css = this.getClass().getResource("style.css").toExternalForm();
+        primaryStage.setResizable(false);
         primaryStage.show();
 
 

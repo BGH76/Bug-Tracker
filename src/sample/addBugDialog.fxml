@@ -1,42 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import javafx.scene.text.Text?>
-<DialogPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="sample.AddBugController"
-            prefHeight="400.0" prefWidth="800.0">
+<DialogPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.AddBugController">
 
     <headerText>
         Fill in Information For New Bug
     </headerText>
     <content>
-        <GridPane vgap="10" hgap="10">
-            <Label text="Date Entered: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
-            <Label fx:id="dateEnteredField" text="05/23/2021" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <GridPane hgap="10" vgap="10">
+            <Label text="Date Entered: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <Label fx:id="dateEnteredField" text="05/23/2021" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-            <Label text="Project: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
-            <TextField fx:id="projectField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+            <Label text="Project: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="projectField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
 
-            <Label text="Version: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
-            <TextField fx:id="versionField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+            <Label text="Version: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="versionField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
 
-            <Label text="Company: " GridPane.rowIndex="3" GridPane.columnIndex="0"/>
-            <TextField fx:id="companyField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+            <Label text="Company: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
+            <TextField fx:id="companyField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
 
-            <Label text="Last Updated: " GridPane.rowIndex="4" GridPane.columnIndex="0"/>
-            <Label fx:id="lastUpdatedField" text="05/23/2021" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+            <Label text="Last Updated: " GridPane.columnIndex="0" GridPane.rowIndex="4" />
+            <Label fx:id="lastUpdatedField" text="mm/dd/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="4" />
 
-            <Label text="Status: " GridPane.rowIndex="5" GridPane.columnIndex="0"/>
-            <TextField fx:id="statusField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+<!--            <Label text="Status: " GridPane.rowIndex="5" GridPane.columnIndex="0"/>-->
+<!--            <TextField fx:id="statusField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>-->
 
-            <Label text="Description: " GridPane.rowIndex="6" GridPane.columnIndex="0"/>
-            <TextArea fx:id="descriptionField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+            <RadioButton fx:id="statusRadioButton" mnemonicParsing="false" selected="false" text="Bug Fixed" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+
+            <Label text="Description: " GridPane.columnIndex="0" GridPane.rowIndex="6" />
+            <TextArea fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+         <columnConstraints>
+            <ColumnConstraints />
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+            <RowConstraints />
+         </rowConstraints>
 
         </GridPane>
     </content>

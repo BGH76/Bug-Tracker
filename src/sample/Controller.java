@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
@@ -42,13 +43,13 @@ public class Controller<IEventBroker> implements Initializable {
 
 
 
-
-
     @FXML
     public void addNewBug(){
+        LocalDate date = LocalDate.now();
         Dialog<ButtonType> dialog = new Dialog<ButtonType>();
         dialog.initOwner(mainPanel.getScene().getWindow());
         dialog.setTitle("Add New Bug");
+        dialog.getDialogPane().getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(getClass().getResource("addBugDialog.fxml"));
         try {
@@ -57,6 +58,8 @@ public class Controller<IEventBroker> implements Initializable {
             System.out.println("Could not load dialog: ");
             e.printStackTrace();
         }
+        AddBugController abc = fxmlLoader.getController();
+        abc.updateDateEnteredOnAddBug(date.toString());
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
@@ -70,43 +73,46 @@ public class Controller<IEventBroker> implements Initializable {
 
 
     // Update method to extract row data and open update dialog box. Send data to update controller.
-    //TODO Add method to ensure a row is selected.
-    //if (tblDataView.getSelectionModel().getSelectedItem() == null) return;
     @FXML
     public void updateBug() throws IOException {
-        int row = centerTableInfoView.getSelectionModel().selectedIndexProperty().get();
-        Bug bug = centerTableInfoView.getItems().get(row);
-        String id = bug.getId();
-        String dateEntered = bug.getDateEntered();
-        String project = bug.getProject();
-        String company = bug.getProject();
-        String version = bug.getVersion();
-        String lastUpdate = bug.getLastUpdate();
-        String status = bug.getStatus();
-        String description = bug.getDescription();
+        if(centerTableInfoView.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setContentText("Please Select A Row");
+            alert.show();
+        } else {
+            int row = centerTableInfoView.getSelectionModel().selectedIndexProperty().get();
+            Bug bug = centerTableInfoView.getItems().get(row);
+            String id = bug.getId();
+            String dateEntered = bug.getDateEntered();
+            String project = bug.getProject();
+            String company = bug.getProject();
+            String version = bug.getVersion();
+            String lastUpdate = bug.getLastUpdate();
+            String status = bug.getStatus();
+            String description = bug.getDescription();
 
-        Dialog<ButtonType> updateDialogBox = new Dialog<>();
-        updateDialogBox.initOwner(mainPanel.getScene().getWindow());
-        updateDialogBox.setTitle("UPDATE RECORD");
-        FXMLLoader loader = new FXMLLoader();
-        loader.setLocation(getClass().getResource("updateDialogBox.fxml"));
-        try{
-            updateDialogBox.getDialogPane().setContent(loader.load());
-        }catch(IOException e){
-            e.printStackTrace();
+            Dialog<ButtonType> updateDialogBox = new Dialog<>();
+            updateDialogBox.initOwner(mainPanel.getScene().getWindow());
+            updateDialogBox.setTitle("UPDATE RECORD");
+            updateDialogBox.getDialogPane().getStylesheets().add(getClass().getResource("style.css").toExternalForm());
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(getClass().getResource("updateDialogBox.fxml"));
+            try {
+                updateDialogBox.getDialogPane().setContent(loader.load());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            updateBugController update = loader.getController();
+            update.display(id, dateEntered, project, company, version, lastUpdate, status, description);
+
+            updateDialogBox.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            updateDialogBox.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+            Optional<ButtonType> result = updateDialogBox.showAndWait();
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                update.updateBugSandD();
+                upDateTableView();
+            }
         }
-        updateBugController update = loader.getController();
-        update.display(id,dateEntered,project,company,version,lastUpdate,status,description);
-
-        updateDialogBox.getDialogPane().getButtonTypes().add(ButtonType.OK);
-        updateDialogBox.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-        Optional<ButtonType> result = updateDialogBox.showAndWait();
-        if(result.isPresent() && result.get() == ButtonType.OK) {
-            update.updateBugSandD();
-            upDateTableView();
-
-        }
-
     }
 
 
@@ -119,7 +125,6 @@ public class Controller<IEventBroker> implements Initializable {
             else if(radioUnfixed.isSelected()){
                 os = FXCollections.observableArrayList(db.getUnfixedData());
             }
-
             idValue.setCellValueFactory(new PropertyValueFactory<Bug,String>("id"));
             dateEnteredValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("dateEntered"));
             projectValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("project"));
@@ -131,6 +136,8 @@ public class Controller<IEventBroker> implements Initializable {
             centerTableInfoView.getColumns().clear();
             centerTableInfoView.getColumns().addAll(idValue,dateEnteredValue,projectValue,companyValue,versionValue,lastUpdatedValue,statusValue,descriptionValue);
             centerTableInfoView.setItems(os);
+
+//            centerTableInfoView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
 
         } catch (SQLException e) {
             e.printStackTrace();

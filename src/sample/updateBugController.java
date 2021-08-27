@@ -30,8 +30,7 @@ public class updateBugController implements Initializable {
         this.stat = status;
         descriptionField.setText(description);
         i = id;
-        System.out.println(stat);
-        if(stat.equals("y")){
+        if(stat.equals("yes")){
             fixedRadioButton.setSelected(true);
         } else {
             fixedRadioButton.setSelected(false);
@@ -43,9 +42,9 @@ public class updateBugController implements Initializable {
         String temp;
         int j = Integer.parseInt(i);
         if(fixedRadioButton.isSelected()){
-            temp = "y";
+            temp = "yes";
         } else {
-            temp = "n";
+            temp = "no";
         }
         String descript = descriptionField.getText();
         db.updateBugStatusAndDescription(j, temp, descript);

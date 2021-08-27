@@ -6,10 +6,11 @@ import javafx.scene.Cursor;
 
 import java.sql.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class DdHelper {
-
+    //TODO change to private
     public static final String DB_NAME = "bugTrackerDB.db";
     public static final String dbconnection = "jdbc:sqlite:/Users/brianhouts/IdeaProjects/BugTracker/bugTrackerDB.db";
 
@@ -22,6 +23,8 @@ public class DdHelper {
     public static final String COLUMN_LAST_UPDATE = "last_update";
     public static final String COLUMN_STATUS = "status";
     public static final String COLUMN_DESCRIPTION = "description";
+
+    private LocalDate myDate = LocalDate.now();
 
 //    public static final String TABLE_DESCRIPTION = "description_table";
 //    public static final String COLUMN_DES_PROJECT = "description_project";
@@ -81,7 +84,7 @@ public class DdHelper {
         use the DdHelper class and call this method passing information which is applied to the sql strings.
      */
     public void addNewBug (String projectx, String versionx, String companyx, String statusx, String descriptionx){
-        LocalDate myDate = LocalDate.now();
+//        LocalDate myDate = LocalDate.now();
 
         String newBug = "INSERT INTO " +  TABLE_INFO + "(" + COLUMN_DATE_ENTERED + ", " + COLUMN_PROJECT + ", " + COLUMN_VERSION + ", " + COLUMN_COMPANY + ", " + COLUMN_LAST_UPDATE + ", " + COLUMN_STATUS + ", " + COLUMN_DESCRIPTION + ") " +
                 " VALUES ('" + myDate + "', '" + projectx + "', '" + versionx + "', '" + companyx + "', '" + myDate + "', '" + statusx + "', '" + descriptionx + "')";
@@ -135,7 +138,7 @@ public class DdHelper {
     public ObservableList<Bug> getFixedData() throws SQLException {
         ObservableList<Bug> list = FXCollections.observableArrayList();
 
-        String fixedData = "SELECT * FROM " + TABLE_INFO + " WHERE " + COLUMN_STATUS +"= 'y'";
+        String fixedData = "SELECT * FROM " + TABLE_INFO + " WHERE " + COLUMN_STATUS +"= 'yes'";
         try {
             conn = DriverManager.getConnection(dbconnection);
             Statement statement = conn.createStatement();
@@ -164,7 +167,7 @@ public class DdHelper {
     public ObservableList<Bug> getUnfixedData() throws SQLException {
         ObservableList<Bug> list = FXCollections.observableArrayList();
 
-        String unfixedData = "SELECT * FROM " + TABLE_INFO + " WHERE " + COLUMN_STATUS +"= 'n'";
+        String unfixedData = "SELECT * FROM " + TABLE_INFO + " WHERE " + COLUMN_STATUS +"= 'no'";
         try {
             conn = DriverManager.getConnection(dbconnection);
             Statement statement = conn.createStatement();
@@ -191,8 +194,8 @@ public class DdHelper {
     }
     public void updateBugStatusAndDescription(int idNum, String status, String descript){
 
-        String upString = "UPDATE " + TABLE_INFO + " SET " + COLUMN_STATUS + " ='" + status + "'," + COLUMN_DESCRIPTION + " ='" +  descript + "' WHERE " + COLUMN_ID + "=" + idNum;
-        System.out.println(upString);
+//        String upString = "UPDATE " + TABLE_INFO + " SET " + COLUMN_STATUS + " ='" + status + "'," + COLUMN_DESCRIPTION + " ='" +  descript + "' WHERE " + COLUMN_ID + "=" + idNum;
+        String upString = "UPDATE " + TABLE_INFO + " SET " + COLUMN_LAST_UPDATE + " ='" + myDate + "'," + COLUMN_STATUS + " ='" + status + "'," + COLUMN_DESCRIPTION + " ='" +  descript + "' WHERE " + COLUMN_ID + "=" + idNum;
 
         try {
             conn = DriverManager.getConnection(dbconnection);
