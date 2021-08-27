@@ -12,40 +12,17 @@
         <GridPane hgap="10" vgap="10">
             <Label text="Date Entered: " GridPane.columnIndex="0" GridPane.rowIndex="0" />
             <Label fx:id="dateEnteredField" text="05/23/2021" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-
             <Label text="Project: " GridPane.columnIndex="0" GridPane.rowIndex="1" />
             <TextField fx:id="projectField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-
             <Label text="Version: " GridPane.columnIndex="0" GridPane.rowIndex="2" />
             <TextField fx:id="versionField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-
             <Label text="Company: " GridPane.columnIndex="0" GridPane.rowIndex="3" />
             <TextField fx:id="companyField" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-
             <Label text="Last Updated: " GridPane.columnIndex="0" GridPane.rowIndex="4" />
             <Label fx:id="lastUpdatedField" text="mm/dd/yyyy" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-
-<!--            <Label text="Status: " GridPane.rowIndex="5" GridPane.columnIndex="0"/>-->
-<!--            <TextField fx:id="statusField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>-->
-
             <RadioButton fx:id="statusRadioButton" mnemonicParsing="false" selected="false" text="Bug Fixed" GridPane.columnIndex="0" GridPane.rowIndex="5" />
-
             <Label text="Description: " GridPane.columnIndex="0" GridPane.rowIndex="6" />
             <TextArea fx:id="descriptionField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
-         <columnConstraints>
-            <ColumnConstraints />
-            <ColumnConstraints />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-            <RowConstraints />
-         </rowConstraints>
-
         </GridPane>
     </content>
 </DialogPane>

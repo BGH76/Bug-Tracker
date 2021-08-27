@@ -15,7 +15,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-public class Controller<IEventBroker> implements Initializable {
+public class Controller implements Initializable {
     DdHelper db = new DdHelper();
 
     @FXML
@@ -23,25 +23,23 @@ public class Controller<IEventBroker> implements Initializable {
     @FXML
     private TableView<Bug> centerTableInfoView;
     @FXML
-    TableColumn<Bug, String> idValue;
+    private TableColumn<Bug, String> idValue;
     @FXML
-    TableColumn<Bug, String> dateEnteredValue;
+    private TableColumn<Bug, String> dateEnteredValue;
     @FXML
-    TableColumn<Bug, String> projectValue;
+    private TableColumn<Bug, String> projectValue;
     @FXML
-    TableColumn<Bug, String> versionValue;
+    private TableColumn<Bug, String> versionValue;
     @FXML
-    TableColumn<Bug, String> companyValue;
+    private TableColumn<Bug, String> companyValue;
     @FXML
-    TableColumn<Bug, String> lastUpdatedValue;
+    private TableColumn<Bug, String> lastUpdatedValue;
     @FXML
-    TableColumn<Bug, String> statusValue;
+    private TableColumn<Bug, String> statusValue;
     @FXML
-    TableColumn<Bug, String> descriptionValue;
+    private TableColumn<Bug, String> descriptionValue;
     @FXML
     private RadioButton radioAllBugs, radioFixed, radioUnfixed;
-
-
 
     @FXML
     public void addNewBug(){
@@ -71,8 +69,6 @@ public class Controller<IEventBroker> implements Initializable {
         }
     }
 
-
-    // Update method to extract row data and open update dialog box. Send data to update controller.
     @FXML
     public void updateBug() throws IOException {
         if(centerTableInfoView.getSelectionModel().getSelectedItem() == null){
@@ -115,7 +111,6 @@ public class Controller<IEventBroker> implements Initializable {
         }
     }
 
-
     public void upDateTableView(){
         try {
             ObservableList<Bug> os = FXCollections.observableArrayList(db.getAllData());
@@ -125,25 +120,23 @@ public class Controller<IEventBroker> implements Initializable {
             else if(radioUnfixed.isSelected()){
                 os = FXCollections.observableArrayList(db.getUnfixedData());
             }
-            idValue.setCellValueFactory(new PropertyValueFactory<Bug,String>("id"));
-            dateEnteredValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("dateEntered"));
-            projectValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("project"));
-            versionValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("version"));
-            companyValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("company"));
-            lastUpdatedValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("lastUpdate"));
-            statusValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("status"));
-            descriptionValue.setCellValueFactory(new PropertyValueFactory<Bug, String>("description"));
+            idValue.setCellValueFactory(new PropertyValueFactory<>("id"));
+            dateEnteredValue.setCellValueFactory(new PropertyValueFactory<>("dateEntered"));
+            projectValue.setCellValueFactory(new PropertyValueFactory<>("project"));
+            versionValue.setCellValueFactory(new PropertyValueFactory<>("version"));
+            companyValue.setCellValueFactory(new PropertyValueFactory<>("company"));
+            lastUpdatedValue.setCellValueFactory(new PropertyValueFactory<>("lastUpdate"));
+            statusValue.setCellValueFactory(new PropertyValueFactory<>("status"));
+            descriptionValue.setCellValueFactory(new PropertyValueFactory<>("description"));
             centerTableInfoView.getColumns().clear();
             centerTableInfoView.getColumns().addAll(idValue,dateEnteredValue,projectValue,companyValue,versionValue,lastUpdatedValue,statusValue,descriptionValue);
             centerTableInfoView.setItems(os);
-
-//            centerTableInfoView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
+    // Updates data in TableView when All Bugs, Fixed, and UnFixed radio buttons are selected.
     public void radioButtonSelected(){
         upDateTableView();
     }

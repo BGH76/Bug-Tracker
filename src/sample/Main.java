@@ -13,11 +13,9 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("main.fxml"));
         primaryStage.setTitle("BugTracker");
         primaryStage.setScene(new Scene(root, 1200, 800));
-        root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());// CSS file TODO remove <--
-//        String css = this.getClass().getResource("style.css").toExternalForm();
+        root.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setResizable(false);
         primaryStage.show();
-
 
         DdHelper db = new DdHelper();
         if (db.open()) {
@@ -26,10 +24,8 @@ public class Main extends Application {
         }
     }
 
-
     public static void main(String[] args) {
         launch(args);
     }
 }
 
-//https://docs.oracle.com/javafx/2/fxml_get_started/fxml_tutorial_intermediate.htm

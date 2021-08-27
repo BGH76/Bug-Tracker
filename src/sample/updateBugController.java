@@ -1,13 +1,8 @@
 package sample;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
-import java.net.URL;
-import java.util.ResourceBundle;
-
-
-public class updateBugController implements Initializable {
+public class updateBugController {
 
     @FXML
     private Label bugId, dateEnteredLabel, projectLabel, companyLabel, versionLabel, lastUpdatedLabel;
@@ -15,22 +10,24 @@ public class updateBugController implements Initializable {
     private TextArea descriptionField;
     @FXML
     private RadioButton fixedRadioButton;
-    String i;
-    String stat;
 
-    //TODO define i and j better to show Label -> String -> int for database selection of id
+    // i is used to parsed into an int for the database helper class to query for id. id comes in as a string.
+    //  The display method converts id to a Label for displaying on dialog box.
+    // id is also stored in i and the updateBugSandD method parses i into an int stored in j.
+    // j is sent to the database helper class as an int.
+    private String i;
 
     public void display(String id, String dateEntered, String prooject, String company, String version, String lastUpdate, String status, String description){
+
         bugId.setText(id);
         dateEnteredLabel.setText(dateEntered);
         projectLabel.setText(prooject);
         companyLabel.setText(company);
         versionLabel.setText(version);
         lastUpdatedLabel.setText(lastUpdate);
-        this.stat = status;
         descriptionField.setText(description);
         i = id;
-        if(stat.equals("yes")){
+        if(status.equals("yes")){
             fixedRadioButton.setSelected(true);
         } else {
             fixedRadioButton.setSelected(false);
@@ -49,21 +46,4 @@ public class updateBugController implements Initializable {
         String descript = descriptionField.getText();
         db.updateBugStatusAndDescription(j, temp, descript);
     }
-
-        @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-
-
-
-    }
 }
-//    TablePosition pos = table.getSelectionModel().getSelectedCells().get(0);
-//    int row = pos.getRow();
-//
-//    // Item here is the table view type:
-//    Item item = table.getItems().get(row);
-//
-//    TableColumn col = pos.getTableColumn();
-//
-//    // this gives the value in the selected cell:
-//    String data = (String) col.getCellObservableValue(item).getValue();
