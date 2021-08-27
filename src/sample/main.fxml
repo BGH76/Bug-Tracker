@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane fx:id="mainPanel" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+    <top>
+        <HBox alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets bottom="10" left="300" right="10" top="10" />
+            </padding>
+            <Button fx:id="addNewBugButton" onAction="#addNewBug">Add New Bug</Button>
+            <Button fx:id="updateButton" onAction="#updateBug">Update</Button>
+            <Button fx:id="btn_3">Button 3</Button>
+         <HBox alignment="CENTER_LEFT" prefHeight="27.0" prefWidth="369.0" spacing="10">
+            <children>
+               <RadioButton fx:id="radioAllBugs" mnemonicParsing="false" onAction="#radioButtonSelected" selected="true" text="All Bugs">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="radioGroup" />
+                  </toggleGroup></RadioButton>
+               <RadioButton fx:id="radioFixed" mnemonicParsing="false" onAction="#radioButtonSelected" text="Fixed " toggleGroup="$radioGroup" />
+               <RadioButton fx:id="radioUnfixed" mnemonicParsing="false" onAction="#radioButtonSelected" text="UnFixed" toggleGroup="$radioGroup" />
+            </children>
+         </HBox>
+        </HBox>
+    </top>
+    <left>
+        <VBox prefWidth="100">
+            <padding>
+                <Insets left="5" />
+            </padding>
+        </VBox>
+    </left>
+    <center>
+        <TableView fx:id="centerTableInfoView">
+            <columns>
+                <TableColumn fx:id="idValue" text="ID" />
+                <TableColumn fx:id="dateEnteredValue" text="Date Entered" />
+                <TableColumn fx:id="projectValue" text="Project" />
+                <TableColumn fx:id="versionValue" text="Version" />
+                <TableColumn fx:id="companyValue" text="Company" />
+                <TableColumn fx:id="lastUpdatedValue" text="Last Updated" />
+                <TableColumn fx:id="statusValue" text="Status" />
+                <TableColumn fx:id="descriptionValue" prefWidth="350" text="Bug Discription" />
+            </columns>
+        </TableView>
+    </center>
+    <right>
+        <VBox prefWidth="50" />
+    </right>
+    <bottom>
+        <VBox prefHeight="50" />
+    </bottom>
+</BorderPane>

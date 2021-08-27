@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<DialogPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="sample.AddBugController"
+            prefHeight="400.0" prefWidth="800.0">
+
+    <headerText>
+        Fill in Information For New Bug
+    </headerText>
+    <content>
+        <GridPane vgap="10" hgap="10">
+            <Label text="Date Entered: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+            <Label fx:id="dateEnteredField" text="05/23/2021" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+            <Label text="Project: " GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+            <TextField fx:id="projectField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+            <Label text="Version: " GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+            <TextField fx:id="versionField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+            <Label text="Company: " GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+            <TextField fx:id="companyField" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+            <Label text="Last Updated: " GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+            <Label fx:id="lastUpdatedField" text="05/23/2021" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+            <Label text="Status: " GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+            <TextField fx:id="statusField" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+            <Label text="Description: " GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+            <TextArea fx:id="descriptionField" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+        </GridPane>
+    </content>
+</DialogPane>

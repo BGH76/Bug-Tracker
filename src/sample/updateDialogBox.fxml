@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<DialogPane prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="sample.updateBugController">
+   <headerText>
+      UPDATE RECORD
+   </headerText>
+   <content>
+      <GridPane hgap="15.0" vgap="10.0">
+         <Label alignment="TOP_RIGHT" text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+         <Label fx:id="bugId" text="******" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+         <Label text="Date Entered:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+         <Label fx:id="dateEnteredLabel" text="******" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+         <Label text="Project:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+         <Label fx:id="projectLabel" text="******" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+         <Label text="Company:" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+         <Label fx:id="companyLabel" text="******" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+         <Label text="Verson:" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+         <Label fx:id="versionLabel" text="******" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+         <Label text="Last Updated:" GridPane.columnIndex="0" GridPane.rowIndex="5" />
+         <Label fx:id="lastUpdatedLabel" text="******" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+         <RadioButton fx:id="fixedRadioButton" mnemonicParsing="false" selected="false" text="Fixed" GridPane.columnIndex="0" GridPane.rowIndex="6"/>
+
+         <Label text="Description: " GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+         <TextArea fx:id="descriptionField" GridPane.rowIndex="7" GridPane.columnIndex="1" prefHeight="300"/>
+
+         <padding>
+            <Insets left="10.0" right="10.0" top="15.0" />
+         </padding>
+
+
+      </GridPane>
+   </content>
+</DialogPane>
